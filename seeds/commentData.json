@@ -1,0 +1,13 @@
+[
+  {
+    "content": "Great post! I learned a lot.",
+    "user_id": 2,
+    "post_id": 1
+  },
+  {
+    "content": "I have a question about this topic. Can you provide more details?",
+    "user_id": 1,
+    "post_id": 2
+  }
+]
+  
