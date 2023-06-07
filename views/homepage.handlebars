@@ -3,7 +3,7 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Homepage</title>
+  <title>Blog Homepage</title>
   <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
@@ -19,17 +19,19 @@
   </header>
 
   <main>
-    <h2>Recent Posts</h2>
+    <section class="posts">
+      <h2>Recent Posts</h2>
 
-    {{!-- Iterate over the posts --}}
-    {{#each posts}}
-      <div class="post">
-        <h3>{{title}}</h3>
-        <p>By: {{user.username}}</p>
-        <p>{{content}}</p>
-        <a href="/post/{{id}}">Read More</a>
-      </div>
-    {{/each}}
+      {{!-- Iterate over the posts --}}
+      {{#each posts}}
+        <article>
+          <h3>{{title}}</h3>
+          <p>By: {{user.username}}</p>
+          <p>{{content}}</p>
+          <a href="/post/{{id}}">Read More</a>
+        </article>
+      {{/each}}
+    </section>
   </main>
 
   <footer>
@@ -37,3 +39,4 @@
   </footer>
 </body>
 </html>
+
