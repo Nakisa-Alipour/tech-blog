@@ -3,6 +3,8 @@ const postData = require('./postData');
 const commentData = require('./commentData');
 
 const sequelize = require('../config/connection');
+const { User, Post, Comment } = require('../models');
+
 
 const seedAll = async () => {
     await sequelize.sync({ force: true });
