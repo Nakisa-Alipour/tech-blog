@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <title>{{title}}</title>
-  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
   <header>
@@ -22,9 +22,13 @@
     {{{body}}} <!-- This is where the content of each handlebars template will be inserted -->
   </main>
 
+  {{#if logged_in}}
+  <script src="/js/logout.js"></script>
+  {{/if}}
+
   <footer>
     <p>© 2023 Blog. All rights reserved.</p>
   </footer>
-  <script src="/script.js"></script>
+  
 </body>
 </html>
