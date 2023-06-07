@@ -1,0 +1,48 @@
+<!-- views/dashboard.handlebars -->
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header>
+    <h1>Blog</h1>
+    <nav>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/dashboard">Dashboard</a></li>
+        <li><a href="/logout">Logout</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <h2>Welcome, {{username}}!</h2>
+    <h3>Your Posts:</h3>
+    {{#if posts}}
+      <ul class="post-list">
+        {{#each posts}}
+          <li class="post">
+            <h4>{{title}}</h4>
+            <p class="post-author">By {{User.username}}</p>
+            <p class="post-date">Posted on {{formatDate createdAt}}</p>
+            <p class="post-actions">
+              <a href="/post/{{id}}">View</a> | <a href="/edit/{{id}}">Edit</a> | <a href="#" class="delete-post" data-id="{{id}}">Delete</a>
+            </p>
+          </li>
+        {{/each}}
+      </ul>
+    {{else}}
+      <p>No posts found.</p>
+    {{/if}}
+    <a href="/dashboard/new" class="create-post-link">Create New Post</a>
+  </main>
+
+  <footer>
+    <p>© 2023 Blog. All rights reserved.</p>
+  </footer>
+  <script src="/script.js"></script>
+</body>
+</html>
