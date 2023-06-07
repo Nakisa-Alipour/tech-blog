@@ -2,7 +2,11 @@
 <section>
   <h2>Your Posts</h2>
   {{#each posts}}
-    {{> dashboard-postinfo this}} <!-- Include the 'dashboard-postinfo' partial for each post -->
+    <div class="card">
+    <div class="card-header">
+        <h4><a class="link" href="/dashboard/edit/{{id}}">{{title}}</a></h4>
+    </div>
+    </div>
   {{/each}}
 </section>
 {{/if}}
