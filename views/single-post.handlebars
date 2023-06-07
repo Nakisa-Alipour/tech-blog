@@ -1,67 +1,26 @@
-<!-- views/single-post.handlebars -->
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="UTF-8">
-  <title>Single Post</title>
-  <link rel="stylesheet" href="/styles.css">
-</head>
-<body>
-  <header>
-    <h1>Blog</h1>
-    <nav>
-      <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/login">Login</a></li>
-        <li><a href="/signup">Sign Up</a></li>
-      </ul>
-    </nav>
-  </header>
+{{! Render the post info using the "post-info" partial }}
+{{> post-info post}}
 
-  <main>
-    <article class="single-post">
-      <h2>{{ post.title }}</h2>
-      <p class="post-author">By {{ post.User.username }}</p>
-      <p class="post-content">{{ post.content }}</p>
-      <p class="post-date">Posted on {{ formatDate post.createdAt }}</p>
+{{#if logged_in}}
+{{! Display a card for leaving comments if the user is logged in }}
+<div class="card">
+  <h3 class="card-header">Leave a Comment</h3>
+  <form class="card-body comment-form" id="comment-form">
+    {{! Form for submitting comments }}
+    <div class="form-group">
+      <label for="comment">Comment:</label>
+      <textarea id="comment" name="comment-body" class="form-control" rows="3"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
+{{/if}}
 
-      <hr>
+{{! Render the comments section using the "comments" partial and pass the post's comments data }}
+{{> comments post.comments}}
 
-      <h3>Comments</h3>
-      {{#if post.Comments}}
-        <ul class="comment-list">
-          {{#each post.Comments}}
-            <li class="comment">
-              <p class="comment-author">Comment by {{ User.username }}</p>
-              <p class="comment-text">{{ comment_text }}</p>
-            </li>
-          {{/each}}
-        </ul>
-      {{else}}
-        <p>No comments yet.</p>
-      {{/if}}
-
-      <hr>
-
-      <h3>Add a Comment</h3>
-      {{#if loggedIn}}
-        <form action="/api/comments" method="POST" class="comment-form">
-          <input type="hidden" name="post_id" value="{{ post.id }}">
-          <label for="comment-text">Your Comment:</label>
-          <textarea id="comment-text" name="comment_text" required></textarea>
-          <button type="submit">Submit</button>
-        </form>
-      {{else}}
-        <p>You must be logged in to add a comment.</p>
-        <p><a href="/login">Login</a> or <a href="/signup">Sign Up</a></p>
-      {{/if}}
-    </article>
-  </main>
-
-  <footer>
-    <p>© 2023 Blog. All rights reserved.</p>
-  </footer>
-  <script src="/script.js"></script>
-</body>
-</html>
+{{#if logged_in}}
+{{! Include the comment.js script if the user is logged in }}
+<script src="/js/comment.js"></script>
+{{/if}}
 
