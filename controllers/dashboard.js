@@ -37,7 +37,7 @@ router.get('/', withAuth, async (req, res) => {
 // Create new post route
 router.get('/new', withAuth, (req, res) => {
     // Render the new-post template, allowing the user to create a new post
-    res.render('new-post', { loggedIn: true, username: req.session.username });
+    res.render('create-post', { loggedIn: true, username: req.session.username });
 });
 
 // Edit post route
@@ -78,3 +78,4 @@ router.get('/edit/:id', withAuth, async (req, res) => {
 });
 
 module.exports = router;
+
