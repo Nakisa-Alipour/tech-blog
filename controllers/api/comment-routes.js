@@ -2,6 +2,43 @@ const router = require('express').Router();
 const { Comment } = require('../../models');
 const withAuth = require('../../utils/auth');
 
+// Get all comments
+router.get('/', async (req, res) => {
+    try {
+        const commentsData = await Comment.findAll({
+            include: [{ model: User, attributes: ['username'] }],
+        });
+  
+        const comments = commentsData.map((comment) => comment.get({ plain: true }));
+  
+        res.status(200).json(comments);
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
+
+// Get a comment by ID
+router.get('/:id', async (req, res) => {
+    try {
+        const commentData = await Comment.findByPk(req.params.id, {
+            include: [{ model: User, attributes: ['username'] }],
+        });
+  
+        if (!commentData) {
+            res.status(404).json({ message: 'No comment found with this id!' });
+            return;
+        }
+  
+        const comment = commentData.get({ plain: true });
+  
+        res.status(200).json(comment);
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
+  
+  
+
 // Create a new comment
 router.post('/', withAuth, async (req, res) => {
     try {
