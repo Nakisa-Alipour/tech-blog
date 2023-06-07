@@ -1,43 +1,4 @@
-<!-- views/homepage.handlebars -->
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="UTF-8">
-  <title>Blog Homepage</title>
-  <link rel="stylesheet" href="/styles.css">
-</head>
-<body>
-  <header>
-    <h1>Welcome to the Blog</h1>
-    <nav>
-      <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/login">Login</a></li>
-        <li><a href="/signup">Sign Up</a></li>
-      </ul>
-    </nav>
-  </header>
-
-  <main>
-    <section class="posts">
-      <h2>Recent Posts</h2>
-
-      {{!-- Iterate over the posts --}}
-      {{#each posts}}
-        <article>
-          <h3>{{title}}</h3>
-          <p>By: {{user.username}}</p>
-          <p>{{content}}</p>
-          <a href="/post/{{id}}">Read More</a>
-        </article>
-      {{/each}}
-    </section>
-  </main>
-
-  <footer>
-    <p>© 2023 Blog. All rights reserved.</p>
-  </footer>
-  <script src="/script.js"></script>
-</body>
-</html>
+<article class="post">
+  ${posts.map(post => `{{> post-info post}}`).join('')}
+</article>
 
